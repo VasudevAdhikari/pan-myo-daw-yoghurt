@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account to Pan Myo Daw Yoghurt</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            /* Ensure it stays on top */
+        }
+
+        .language-selector select {
+            border-radius: 10px;
+            background-color: rgba(214, 214, 214, 0.519);
+            padding: 5px;
+        }
+
+        .language-selector option {
+            background: transparent;
+            background-color: rgba(214, 214, 214, 0.519);
+        }
+
+        #registerForm select {
+            height: 30px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <label for="language" id="language-label">Language:</label>
+        <select id="language" name="language">
+            <option id="eng" value="en">English</option>
+            <option id="myan" value="my">မြန်မာ</option>
+        </select>
+    </div>
+    <div class="container">
+        <div class="background-top"></div>
+        <div class="register-container">
+            <div class="register-box">
+                <h2 id="register-your-account">REGISTER YOUR ACCOUNT</h2>
+                <form id="registerForm">
+                    <label for="fullname" id="fullname-label">Full Name:</label>
+                    <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+
+                    <label for="city" id="city-label">City:</label>
+                    <select id="city" name="city" required>
+                        <option id="select-city" value="">Select your city</option>
+                        <option id="mogok-west" value="Mogok West">Mogok (West)</option>
+                        <option id="mogok-east" value="Mogok East">Mogok (East)</option>
+                        <option id="pyin-oo-lwin" value="Pyin Oo Lwin">Pyin Oo Lwin</option>
+                        <option id="bam-bwe" value="Bam Bwe">Bam Bwe</option>
+                        <option id="naung-cho" value="Naung Cho">Naung Cho</option>
+                        <option id="kyaume" value="Kyaume">Kyaume</option>
+                        <option id="hsi-baw" value="Hsi Baw">Hsi Baw</option>
+                        <option id="lashio" value="Lashio">Lashio</option>
+                        <option id="mandalay" value="Mandalay">Mandalay</option>
+                    </select>
+
+                    <label for="profile-pic" id="profile-pic-label">Profile Picture:</label>
+                    <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
+
+                    <button type="submit" id="submitButton" class="disabled" disabled>SIGN UP</button>
+                </form>
+            </div>
+            <div class="background-bottom"></div>
+        </div>
+    </div>
+    <script>
+        function convertToEng() {
+            document.getElementById("register-your-account").textContent = "REGISTER YOUR ACCOUNT";
+            document.getElementById("fullname-label").textContent = "Full Name:";
+            document.getElementById("fullname").placeholder = "Enter your full name";
+            document.getElementById("city-label").textContent = "City:";
+            document.getElementById("submitButton").textContent = "SIGN UP";
+            document.getElementById("mogok-west").textContent = "Mogok (West)";
+            document.getElementById("mogok-east").textContent = "Mogok (East)";
+            document.getElementById("pyin-oo-lwin").textContent = "Pyin Oo Lwin";
+            document.getElementById("bam-bwe").textContent = "Bam Bwe";
+            document.getElementById("naung-cho").textContent = "Naung Cho";
+            document.getElementById("kyaume").textContent = "Kyaume";
+            document.getElementById("hsi-baw").textContent = "Hsi Baw";
+            document.getElementById("lashio").textContent = "Lashio";
+            document.getElementById("mandalay").textContent = "Mandalay";
+            document.getElementById("select-city").textContent = "Select your city";
+            document.getElementById("profile-pic-label").textContent = "Profile Picture:";
+            document.getElementById("language-label").textContent = "Language";
+        }
+
+        function convertToMyanmar() {
+            document.getElementById("register-your-account").textContent = "သင်၏အကောင့်ကိုမှတ်ပုံတင်ပါ";
+            document.getElementById("fullname-label").textContent = "အမည်အပြည့်အစုံ :";
+            document.getElementById("fullname").placeholder = "သင်၏အမည်အပြည့်အစုံထည့်ပါ";
+            document.getElementById("city-label").textContent = "မြို့ :";
+            document.getElementById("submitButton").textContent = "အတည်ပြုပါ";
+            document.getElementById("mogok-west").textContent = "မိုးကုတ် (အနောက်ပိုင်း)";
+            document.getElementById("mogok-east").textContent = "မိုးကုတ် (အရှေ့ပိုင်း)";
+            document.getElementById("pyin-oo-lwin").textContent = "ပြင်ဦးလွင်";
+            document.getElementById("bam-bwe").textContent = "ဘန့်ဘွေး";
+            document.getElementById("naung-cho").textContent = "နောင်ချို";
+            document.getElementById("kyaume").textContent = "ကျောက်မဲ";
+            document.getElementById("hsi-baw").textContent = "သီပေါ";
+            document.getElementById("lashio").textContent = "လားရှိုး";
+            document.getElementById("mandalay").textContent = "မန္တလေး";
+            document.getElementById("select-city").textContent = "သင်၏မြို့နယ်ရွေးပါ";
+            document.getElementById("profile-pic-label").textContent = "ပရိုဖိုင်ပုံထည့်ရန်";
+            document.getElementById("language-label").textContent = "ဘာသာစကား";
+        }
+
+        function applyLanguage(language) {
+            if (language === 'en') {
+                convertToEng();
+            } else if (language === 'my') {
+                convertToMyanmar();
+            }
+        }
+
+        document.getElementById('language').addEventListener('change', function () {
+            const selectedLanguage = this.value;
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+            applyLanguage(selectedLanguage);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const storedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('language').value = storedLanguage;
+            applyLanguage(storedLanguage);
+        });
+
+        function validateForm() {
+            const fullnameInput = document.getElementById('fullname').value;
+            const cityInput = document.getElementById('city').value;
+            const submitButton = document.getElementById('submitButton');
+
+            if (fullnameInput.trim() !== '' && cityInput !== '') {
+                submitButton.disabled = false;
+                submitButton.classList.remove('disabled');
+            } else {
+                submitButton.disabled = true;
+                submitButton.classList.add('disabled');
+            }
+        }
+
+        document.getElementById('fullname').addEventListener('input', validateForm);
+        document.getElementById('city').addEventListener('change', validateForm);
+        document.getElementById('profile-pic').addEventListener('change', validateForm);
+    </script>
+</body>
+
+</html>

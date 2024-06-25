@@ -1,0 +1,238 @@
+@font-face {
+    font-family: 'Canva Sans';
+    src: url('path/to/CanvaSans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Intro';
+    src: url('path/to/Intro-Regular.woff2') format('woff2');
+}
+
+body {
+    margin: 0;
+    font-family: 'Canva Sans', sans-serif;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, lightgrey,white, #f7dde8);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.background-top {
+    background: url('../Pictures/yoghurtSplashLoginPage.png') no-repeat center top;
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.background-bottom {
+    background: url('../milkSplashLoginPage.png') no-repeat center bottom;
+    width: 60%;
+    height: 80%;
+    background-size: cover;
+    position: absolute;
+    margin-left: 8%;
+    margin-bottom: -5%;
+    bottom: 0;
+    z-index: -1;
+}
+
+.register-box {
+    background: rgba(172, 172, 172, 0.2);
+    border-radius: 30px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-box h2 {
+    font-family: 'Intro', sans-serif;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.register-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-box label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.register-box input {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.register-box button {
+    background-color: #ff66b2;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Intro', sans-serif;
+    font-size: 14px;
+}
+
+.register-box button:hover {
+    background-color: #ff3385;
+}
+
+.register-box p {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.register-box p a {
+    color: #ff66b2;
+    text-decoration: none;
+}
+
+.register-box p a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 866px) {
+    .register-box {
+        width: 50%;
+        padding: 15px;
+    }
+
+    .register-box h2 {
+        font-size: 114%;
+    }
+
+    .register-box label,
+    .register-box input,
+    .register-box button,
+    .register-box p {
+        font-size: 90%;
+    }
+
+    .register-box button {
+        width: 180px;
+        align-self: center;
+    }
+
+    .register-box button {
+        padding: 10px;
+    }
+
+    .background-top {
+        height: 60%;
+    }
+
+    .background-bottom {
+        margin-left: 0;
+        width: 100%;
+        height: 80%;
+        margin-bottom: -40px;
+    }
+}
+@media (max-width: 500px) {
+    .register-box {
+        width: 70%;
+        padding: 15px;
+    }
+
+    .register-box h2 {
+        font-size: 114%;
+    }
+
+    .register-box label,
+    .register-box input,
+    .register-box button,
+    .register-box p {
+        font-size: 90%;
+    }
+
+    .register-box button {
+        width: 180px;
+        align-self: center;
+    }
+
+    .register-box button {
+        padding: 10px;
+    }
+
+    .background-top {
+        height: 60%;
+    }
+
+    .background-bottom {
+        margin-left: 0;
+        width: 100%;
+        height: 60%;
+        margin-bottom: -40px;
+    }
+}
+@media (min-height: 1000px) {
+    .register-box {
+        width: 50%;
+        padding: 15px;
+    }
+
+    .register-box h2 {
+        font-size: 114%;
+    }
+
+    .register-box label,
+    .register-box input,
+    .register-box button,
+    .register-box p {
+        font-size: 110%;
+    }
+
+    .register-box button {
+        width: 180px;
+        align-self: center;
+    }
+
+    .register-box button {
+        padding: 10px;
+    }
+
+    .background-top {
+        height: 60%;
+    }
+
+    .background-bottom {
+        margin-left: 0;
+        width: 100%;
+        height: 70%;
+        margin-bottom: -40px;
+    }
+}

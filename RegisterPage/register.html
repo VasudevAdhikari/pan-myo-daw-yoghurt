@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account to Pan Myo Daw Yoghurt</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            /* Ensure it stays on top */
+        }
+
+        .language-selector select {
+            border-radius: 10px;
+            background-color: rgba(214, 214, 214, 0.519);
+            padding: 5px;
+        }
+
+        .language-selector option {
+            background: transparent;
+            background-color: rgba(214, 214, 214, 0.519);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <label for="language" id="language-label">Language:</label>
+        <select id="language" name="language">
+            <option id="eng" value="en">English</option>
+            <option id="myan" value="my">မြန်မာ</option>
+        </select>
+    </div>
+    <div class="container">
+        <div class="background-top"></div>
+        <div class="register-container">
+            <div class="register-box">
+                <h2 id="register-your-account">REGISTER YOUR ACCOUNT</h2>
+                <form id="registerForm">
+                    <label for="email" id="email-label">Gmail :</label>
+                    <input type="email" id="email" name="email" placeholder="something@something.com">
+                    <label for="password" id="password-label">Password :</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••••••">
+                    <button type="submit" id="submitButton" class="disabled" onclick="goToAnotherPage()" disabled>CONTINUE</button>
+                </form>
+                <p>
+                    <span id="already-have-account">Already have an account? </span>
+                    <a href="#" id="to-login-link">Login</a>
+                </p>
+            </div>
+            <div class="background-bottom"></div>
+        </div>
+    </div>
+    <script>
+        function convertToEng() {
+            document.getElementById("register-your-account").textContent = "REGISTER YOUR ACCOUNT";
+            document.getElementById("email-label").textContent = "Gmail :";
+            document.getElementById("password-label").textContent = "Password :";
+            document.getElementById("submitButton").textContent = "CONTINUE";
+            document.getElementById("already-have-account").textContent = "Already have an account? ";
+            document.getElementById("to-login-link").textContent = "Login";
+            document.getElementById("language-label").textContent = "Language";
+        }
+
+        function convertToMyanmar() {
+            document.getElementById("register-your-account").textContent = "သင်၏အကောင့်ကိုမှတ်ပုံတင်ပါ";
+            document.getElementById("email-label").textContent = "ဂျီမေးလ် :";
+            document.getElementById("password-label").textContent = "စကားဝှက် :";
+            document.getElementById("submitButton").textContent = "ဆက်လက်လုပ်ဆောင်ပါ";
+            document.getElementById("already-have-account").textContent = "အကောင့်ရှိပြီးသားလား? ";
+            document.getElementById("to-login-link").textContent = "လော့ဂ်အင်";
+            document.getElementById("language-label").textContent = "ဘာသာစကား";
+        }
+
+        function applyLanguage(language) {
+            if (language === 'en') {
+                convertToEng();
+            } else if (language === 'my') {
+                convertToMyanmar();
+            }
+        }
+
+        document.getElementById('language').addEventListener('change', function () {
+            const selectedLanguage = this.value;
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+            applyLanguage(selectedLanguage);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const storedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('language').value = storedLanguage;
+            applyLanguage(storedLanguage);
+        });
+
+        function isStrongPassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/;
+            const hasLowerCase = /[a-z]/;
+            const hasNumbers = /[0-9]/;
+            const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/;
+
+            if (password.length < minLength) {
+                return false;
+            }
+            if (!hasLowerCase.test(password)) {
+                return false;
+            }
+            if (!hasNumbers.test(password)) {
+                return false;
+            }
+            if (!hasSpecialChars.test(password)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function isValidEmailFormat(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const submitButton = document.getElementById('submitButton');
+
+            if (isValidEmailFormat(emailInput) && isStrongPassword(passwordInput)) {
+                // Enable the button if form is valid
+                submitButton.disabled = false;
+                submitButton.classList.remove('disabled');
+                // Directly call goToAnotherPage function for redirection
+            } else {
+                // Disable the button if form is invalid
+                submitButton.disabled = true;
+                submitButton.classList.add('disabled');
+            }
+        }
+
+        function goToAnotherPage() {
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+
+            if (isValidEmailFormat(emailInput) && isStrongPassword(passwordInput)) {
+                // Redirect to register1.html
+                window.location.href = 'register1.html';
+            }
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', validateForm);
+
+        document.getElementById('email').addEventListener('input', validateForm);
+        document.getElementById('password').addEventListener('input', validateForm);
+    </script>
+</body>
+
+</html>
